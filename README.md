@@ -1,2 +1,1 @@
-# lumen-jwt-api
-Demo laravel lumen api with jwt 
+# Demo laravel lumen api with jwt 
