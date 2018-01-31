@@ -47,13 +47,14 @@ class PostController extends Controller
      */
     public function details(Request $request, $post_id)
     {
-        $this->authorize('create', Post::class);
-        $posts = Post::where('id', $post_id)->where('user_id', $this->currentUser->id)->first();
-        if($posts){
-            $posts->user = User::where('id', $posts->user_id)->select('id', 'name', 'email')->first();
+        $post = Post::find($post_id);
+        $this->authorize('update', $post);
+        
+        if($post){
+            $post->user = User::where('id', $post->user_id)->select('id', 'name', 'email')->first();
         }
                
-        return response()->json($posts);
+        return response()->json($post);
     }
 
     /**
